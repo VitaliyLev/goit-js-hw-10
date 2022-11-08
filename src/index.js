@@ -8,7 +8,7 @@ import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
 
-ref = {
+const ref = {
   inputSearch: document.querySelector('#search-box'),
   countryList: document.querySelector('.country-list'),
   countryInfo: document.querySelector('.country-info'),
@@ -35,12 +35,19 @@ function inputSearchClick(e) {
       }
 
       if (response.length === 1) {
-        cardInfoMarkup(response);
+        // cardInfoMarkup(response);
+        // return;
+
+        const markup = infoCountryMarcupFunction(response);
+        ref.countryInfo.insertAdjacentHTML('beforeend', markup);
         return;
       }
 
       if (response.length >= 2) {
-        updateMarkup(response);
+        // updateMarkup(response);
+
+        const markup = listCountryMarcupFunction(response);
+        ref.countryList.insertAdjacentHTML('beforeend', markup);
       }
     })
     .catch(errorIputValue);
@@ -51,46 +58,46 @@ ref.inputSearch.addEventListener(
   debounce(inputSearchClick, DEBOUNCE_DELAY)
 );
 
-function updateMarkup(dataArrayMarkup) {
-  const markup = dataArrayMarkup
-    .map(
-      ({ name, flags }) =>
-        `<li>
-            <img class="country__item--flag" src="${flags.png}" width="35px" alt="Flag of${name.common}">
-            <span class="country__item--name">${name.common}</span>
-       </li>`
-    )
-    .join('');
-
-  ref.countryList.insertAdjacentHTML('beforeend', markup);
-}
-
-function cardInfoMarkup(dataArrayMarkup) {
-  const markup = dataArrayMarkup
-    .map(
-      ({ name, flags, population, languages, capital }) =>
-        `<ul>
-        <li>
-          <img
-            class="country__item--flag"
-            src="${flags.png}"
-            width="35px"
-            alt="Flag of${name.common}"
-          />
-          <span class="country__item--name">${name.common}</span>
-        </li>
-        <li> <span class="country__cap">Capital:</span> ${capital}</li>
-        <li> <span class="country__pop">Population:</span> ${population}</li>
-        <li> <span class="country__lang">Languages:</span> ${Object.values(
-          languages
-        )}</li>
-      </ul>`
-    )
-    .join('');
-
-  ref.countryInfo.insertAdjacentHTML('beforeend', markup);
-}
-
 function errorIputValue() {
   Notify.failure('Oops, there is no country with that name');
 }
+
+// function updateMarkup(dataArrayMarkup) {
+//   const markup = dataArrayMarkup
+//     .map(
+//       ({ name, flags }) =>
+//         `<li>
+//             <img class="country__item--flag" src="${flags.png}" width="35px" alt="Flag of${name.common}">
+//             <span class="country__item--name">${name.common}</span>
+//        </li>`
+//     )
+//     .join('');
+
+//   ref.countryList.insertAdjacentHTML('beforeend', markup);
+// }
+
+// function cardInfoMarkup(dataArrayMarkup) {
+//   const markup = dataArrayMarkup
+//     .map(
+//       ({ name, flags, population, languages, capital }) =>
+//         `<ul>
+//         <li>
+//           <img
+//             class="country__item--flag"
+//             src="${flags.png}"
+//             width="35px"
+//             alt="Flag of${name.common}"
+//           />
+//           <span class="country__item--name">${name.common}</span>
+//         </li>
+//         <li> <span class="country__cap">Capital:</span> ${capital}</li>
+//         <li> <span class="country__pop">Population:</span> ${population}</li>
+//         <li> <span class="country__lang">Languages:</span> ${Object.values(
+//           languages
+//         )}</li>
+//       </ul>`
+//     )
+//     .join('');
+
+//   ref.countryInfo.insertAdjacentHTML('beforeend', markup);
+// }
