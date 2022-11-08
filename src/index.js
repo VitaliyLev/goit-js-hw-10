@@ -1,8 +1,8 @@
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import infoCountryMarcupFunction from './template/countryInfoMarkup.hbs'
-import listCountryMarcupFunction from './template/countryListMarkup.hbs'
+import infoCountryMarcupFunction from './template/countryInfoMarkup.hbs';
+import listCountryMarcupFunction from './template/countryListMarkup.hbs';
 import fetchCountries from './template/fetchCountries.js';
 import './css/styles.css';
 
@@ -94,5 +94,3 @@ function cardInfoMarkup(dataArrayMarkup) {
 function errorIputValue() {
   Notify.failure('Oops, there is no country with that name');
 }
-
-
