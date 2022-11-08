@@ -11,10 +11,37 @@ body {
   color: #212121;
   line-height: 1.5;
 }
+ul {
+  list-style: none;
+}
 
 #search-box {
   font: inherit;
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+
+#search-box:focus {
+  border-color: rgb(45, 45, 203);
+  outline: none;
+}
+
+.country__item--name {
+  font-size: 25px;
+}
+
+.country__cap {
+  font-size: 18;
+  font-weight: 700;
+}
+
+.country__pop {
+  font-size: 18;
+  font-weight: 700;
+}
+
+.country__lang {
+  font-size: 18;
+  font-weight: 700;
 }

@@ -1,0 +1,23 @@
+{{!-- // {{#each this}}
+// <div class="color-card">
+    // <div class="color-swatch" data-hex="{{hex}}" data-rgb="{{rgb}}" style="background-color:{{hex}};"></div>
+    // <div class="color-meta">
+        // <p>HEX: {{hex}}</p>
+        // <p>RGB: {{rgb}}</p>
+        // </div>
+    // </div>
+// {{/each}}
+
+function updateMarkup(dataArrayMarkup) {
+const markup = dataArrayMarkup
+.map(
+({ name, flags }) =>
+`<li>
+    <img class="country__item--flag" src="${flags.png}" width="35px" alt="Flag of${name.common}">
+    <span class="country__item--name">${name.common}</span>
+</li>`
+)
+.join('');
+
+ref.countryList.insertAdjacentHTML('beforeend', markup);
+} --}}
